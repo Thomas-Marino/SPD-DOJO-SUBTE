@@ -55,7 +55,7 @@ void encender_led(int numero_ingresado)
     Serial.println("\nProxima estacion: Independencia.\n\n\n");
     delay(1750);
     break;
-   	case 3:
+    case 3:
     digitalWrite(LED_CONSTITUCION, HIGH);
     Serial.println("Usted se encuentra en la estacion: Constitucion.\n\n");
     delay(2750);
@@ -132,8 +132,8 @@ void encender_buzzer(int numero_ingresado)
   switch(numero_ingresado)
   {
     case 0:
-  	tone(BUZZER, 500, 2000);
-	  break;
+    tone(BUZZER, 500, 2000);
+    break;
     case 1:
     tone(BUZZER, 600, 2000);
     break;
