@@ -1,0 +1,172 @@
+// Marino Thomas. DOJO SUBTE.
+
+# define A 7.
+# define B 8.
+# define C 9.
+# define D 10.
+# define E 11.
+# define F 13.
+# define G 12.
+# define PULSADOR 2.
+# define LED_CONSTITUCION 3.
+# define LED_SAN_JUAN 4.
+# define LED_INDEPENDENCIA 5.
+# define LED_MORENO 6.
+# define BUZZER A0
+
+int contador;
+int comienzo;
+// ========== FUNCION PARA APAGAR DISPLAY ==========
+void apagar_numero()
+{
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW); 
+  digitalWrite(C, LOW);
+  digitalWrite(D, LOW);
+  digitalWrite(E, LOW);
+  digitalWrite(F, LOW);
+  digitalWrite(G, LOW);
+}
+// ========== FUNCION PARA ENCENDER DISPLAY ==========
+void encender_numero(int numero_ingresado)
+{
+  apagar_numero(); 
+  delay(500);
+  switch (numero_ingresado)
+  {
+    case 0: 
+    digitalWrite(A, HIGH);
+    digitalWrite(B, HIGH); 
+    digitalWrite(C, HIGH);
+    digitalWrite(D, HIGH);
+    digitalWrite(E, HIGH);
+    digitalWrite(F, HIGH);
+    break;
+    case 1:
+    digitalWrite(B, HIGH);
+    digitalWrite(C, HIGH); 
+    break;
+    case 2:
+    digitalWrite(D, HIGH);
+    digitalWrite(E, HIGH);
+    digitalWrite(G, HIGH);
+    digitalWrite(B, HIGH);
+    digitalWrite(A, HIGH);
+    break;
+    case 3:
+    digitalWrite(D, HIGH);
+    digitalWrite(C, HIGH);
+    digitalWrite(G, HIGH);
+    digitalWrite(B, HIGH);
+    digitalWrite(A, HIGH);
+    break;
+ }
+}
+// =========== FUNCION PARA APAGAR LEDS ===========
+void apagar_led()
+{
+  digitalWrite(LED_CONSTITUCION, LOW);
+  digitalWrite(LED_SAN_JUAN, LOW);
+  digitalWrite(LED_INDEPENDENCIA, LOW);
+  digitalWrite(LED_MORENO, LOW);
+}
+// ========== FUNCION PARA ENCENDER LEDS ==========
+void encender_led(int numero_ingresado)
+{
+  apagar_led();
+  switch(numero_ingresado)
+  {
+    case 0:
+    digitalWrite(LED_MORENO, HIGH);
+    Serial.println("\n\n\n\n\n\nUsted se encuentra en la estacion: Moreno.");
+    delay(2750);
+    Serial.println("\n\n\nFin del recorrido.\n\n\n");
+    delay(1750);
+    break;
+    case 1:
+    digitalWrite(LED_INDEPENDENCIA, HIGH);
+    Serial.println("\n\n\n\nUsted se encuentra en la estacion: Independencia.\n\n");
+    delay(2750);
+    Serial.println("\nProxima estacion: Moreno.\n\n\n");
+    delay(1750);
+    break;
+    case 2:
+    digitalWrite(LED_SAN_JUAN, HIGH);
+    Serial.println("\n\n\n\nUsted se encuentra en la estacion: San Juan.\n\n");
+    delay(2750);
+    Serial.println("\nProxima estacion: Independencia.\n\n\n");
+    delay(1750);
+    break;
+   	case 3:
+    digitalWrite(LED_CONSTITUCION, HIGH);
+    Serial.println("Usted se encuentra en la estacion: Constitucion.\n\n");
+    delay(2750);
+    Serial.println("\nProxima estacion: San Juan.\n\n\n");
+    delay(1750);
+    
+    break; 
+  }
+}
+// ========== FUNCION PARA ENCENDER EL BUZZER ==========
+void encender_buzzer(int numero_ingresado)
+{
+  switch(numero_ingresado)
+  {
+    case 0:
+  	tone(BUZZER, 500, 2000);
+	break;
+    case 1:
+    tone(BUZZER, 600, 2000);
+    break;
+    case 2:
+    tone(BUZZER, 700, 2000);
+    break;
+    case 3:
+    tone(BUZZER, 800, 2000);
+    break;
+  }
+}
+// ========== FUNCION PRINCIPAL ==========
+void ejecutar_proceso()
+{
+  contador = 3;
+  while(contador > -1)
+  {
+    encender_numero(contador);
+    encender_buzzer(contador);
+    encender_led(contador);
+    apagar_led();
+    delay(2500);
+    contador -= 1;
+  }
+  apagar_numero();
+  apagar_led();
+}
+
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(PULSADOR, INPUT_PULLUP);
+  pinMode(A, OUTPUT);
+  pinMode(B, OUTPUT);
+  pinMode(C, OUTPUT);
+  pinMode(D, OUTPUT);
+  pinMode(E, OUTPUT);
+  pinMode(F, OUTPUT);
+  pinMode(G, OUTPUT);
+  pinMode(LED_CONSTITUCION, OUTPUT);
+  pinMode(LED_SAN_JUAN, OUTPUT);
+  pinMode(LED_INDEPENDENCIA, OUTPUT);
+  pinMode(LED_MORENO, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  delay(250);
+  comienzo = digitalRead(PULSADOR);
+  if(comienzo == 0)
+  {
+    ejecutar_proceso();
+  }
+}
