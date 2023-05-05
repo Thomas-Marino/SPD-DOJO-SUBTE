@@ -8,7 +8,7 @@ La empresa  “UTN FRA Robotics” ganó la licitación de un proyecto, y deber�
 - Un buzzer el cual emite un sonido diferente cada vez que se llegue a una estación.
 - Un pulsador el cual dará inicio al sistema.
 
-## Funcion principal
+## Función principal
 ~~~ C (lenguaje en el que esta escrito)
 void ejecutar_proceso()
 {
