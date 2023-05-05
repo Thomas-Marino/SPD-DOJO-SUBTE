@@ -103,7 +103,6 @@ void encender_led(int numero_ingresado)
     delay(2750);
     Serial.println("\nProxima estacion: San Juan.\n\n\n");
     delay(1750);
-    
     break; 
   }
 }
