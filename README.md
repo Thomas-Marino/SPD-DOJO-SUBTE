@@ -147,4 +147,4 @@ void encender_buzzer(int numero_ingresado)
 }
 ~~~
 ## Link del proyecto
-- [Proyecto]([https://www.tinkercad.com/things/h1WbVGTJFAf](https://www.tinkercad.com/things/jwLanq90ugF?sharecode=qjR0xr0JkpMdTUO0G1S-HGmK9aLYQNsIB3QFb6Z5VfQ)
+- [Proyecto]([https://www.tinkercad.com/things/h1WbVGTJFAf](https://www.tinkercad.com/things/jwLanq90ugF?sharecode=qjR0xr0JkpMdTUO0G1S-HGmK9aLYQNsIB3QFb6Z5VfQ])
